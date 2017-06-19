@@ -35,14 +35,7 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 ## Resulting data
 
-Resulting data is stored in 'tidyData.RData' and can be loaded into R using the following command:
-
-```
-load('tidyData.RData')
-tidyData
-```
-
-tidyData is a tibble formated dataset, please see [here](https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html) for more details about tibble format. 
+Resulting data is stored in 'tidyData.txt'.
 
 ## Variables
 
