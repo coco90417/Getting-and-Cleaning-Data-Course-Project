@@ -79,20 +79,7 @@ tidyData <- dataCombined %>%
   group_by(subject, activity) %>%
   summarise(average = mean(value, rm.na = TRUE))
 
-save(tidyData, file = "./tidyData.RData")
-
-
-
-
-
-
-
-
-
-
-
-
-
+write.table(tidyData, file = "./tidyData.txt", row.name = F)
 
 
 
