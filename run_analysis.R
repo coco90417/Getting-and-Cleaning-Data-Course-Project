@@ -56,7 +56,7 @@ dataSubject <- bind_rows(subjectTrain, subjectTest)
 # extract only the measurements on means and sd of each measurement -------
 
 indexOfMeanSd <- features %>%
-  filter(str_detect(X2, "mean|std")) 
+  filter(str_detect(X2, "mean\\(\\)|std\\(\\)"))  # note that we neeed to match bracket explicitly, otherwise meanFreq() would be included
 
 dataSetMeanSd <- dataSet[, indexOfMeanSd$X1]
 
@@ -87,9 +87,14 @@ tidyData <- dataCombined %>%
          Z = ifelse(str_detect(category, "-Z"), 1, 0)
          ) %>%
   gather(direction, directionValue, X:Z) %>%
-  select(-c(category, directionValue))
+  select(-c(category, directionValue)) %>%
+  group_by(subject, activity, frequency, body, acc, jerk, mag, mean, direction) %>% # get average value for each subject of each move
+  summarize(average = mean(value))
 
 write.table(tidyData, file = "./tidyData.txt", row.name = F)
+
+
+
 
 
 
