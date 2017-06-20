@@ -41,7 +41,12 @@ Resulting data is stored in 'tidyData.txt'.
 
 1. subject: it is an integer that describes the ID of the subject.
 2. activity: it is a factor that describes the type of activity of the corresponding subject.
-3. average: it is a float that describes the average value of the mean of the activity of the corresponding subject.
-
+3. frequency: whether or not this is a frequency measure, or time
+4. body: whether this is a body measurement or gravity
+5. acc: whether this is a acceleration or gyroscope
+6. jerk: whether this is a jerk signal or not
+7. mag: whether this is a magnitude signal or not
+8. mean: whether this is a mean or a sd measurement
+9. direction: whether this measure is done in X, Y or Z direction
 
  
