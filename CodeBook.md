@@ -48,5 +48,6 @@ Resulting data is stored in 'tidyData.txt'.
 7. mag: whether this is a magnitude signal or not
 8. mean: whether this is a mean or a sd measurement
 9. direction: whether this measure is done in X, Y or Z direction
+10. average: average value of repeated measured of each subject for each move
 
  
