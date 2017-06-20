@@ -76,8 +76,18 @@ names(dataSubject) <- "subject"
 dataCombined <- bind_cols(dataSubject, dataY, dataSetMeanSd)
 tidyData <- dataCombined %>% 
   gather(category, value, -c(subject, activity)) %>%
-  group_by(subject, activity) %>%
-  summarise(average = mean(value, rm.na = TRUE))
+  mutate(frequency = ifelse(str_detect(category, "^f"), 1, 0),  # whether or not this is a frequency measure, or time
+         body = ifelse(str_detect(category, "Body"), 1, 0), # whether this is a body measurement or gravity
+         acc = ifelse(str_detect(category, "Acc"), 1, 0), # whether this is a acceleration or gyroscope
+         jerk = ifelse(str_detect(category, "Jerk"), 1, 0), # whether this is a jerk signal or not
+         mag = ifelse(str_detect(category, "Mag"), 1, 0), # whether this is a magnitude signal or not
+         mean = ifelse(str_detect(category, "mean()"), 1, 0), # whether this is a mean or a sd
+         X = ifelse(str_detect(category, "-X"), 1, 0),
+         Y = ifelse(str_detect(category, "-Y"), 1, 0),
+         Z = ifelse(str_detect(category, "-Z"), 1, 0)
+         ) %>%
+  gather(direction, directionValue, X:Z) %>%
+  select(-c(category, directionValue))
 
 write.table(tidyData, file = "./tidyData.txt", row.name = F)
 
